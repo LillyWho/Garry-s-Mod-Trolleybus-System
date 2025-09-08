@@ -7,6 +7,8 @@ ENT.Type = "anim"
 ENT.Base = "base_entity"
 ENT.AutomaticFrameAdvance = false
 
+ENT.PhysgunDisabled = true
+
 function ENT:SetupDataTables()
 	self:NetworkVar("Float",0,"Time")
 	self:NetworkVar("Float",1,"StatesDuration")
@@ -48,10 +50,6 @@ function ENT:GetLenseData(num)
 	
 	return lense,ldata
 end
-
-hook.Add("PhysgunPickup","Trolleybus_System_PickupTrafficlight",function(ply,ent)
-	if ent:GetClass()=="trolleybus_trafficlight" or Trolleybus_System.NetworkSystem.GetNWVar(ent,"TrafficLight") then return false end
-end)
 
 hook.Add("CanProperty","Trolleybus_System_TrafficLightEnts",function(ply,property,ent)
 	if ent:GetClass()=="trolleybus_trafficlight" or Trolleybus_System.NetworkSystem.GetNWVar(ent,"TrafficLight") then return false end
