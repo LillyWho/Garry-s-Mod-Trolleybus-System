@@ -387,6 +387,7 @@ net.Receive( "TrolleybusTrafficTrackEditor", function( len )
 			pnl.SpawnChance:SetValue( track.SpawnChance or 100 )
 			pnl.WeightDirection:SetValue( track.DirWeight or 100 )
 			pnl.NoService:SetChecked( track.NoService )
+			pnl.PublicTransportOnly:SetChecked( track.PublicServiceOnly )
 		end
 	elseif cmd == 2 then
 		if IsValid( pnl ) then
@@ -424,6 +425,7 @@ net.Receive( "TrolleybusTrafficTrackEditor", function( len )
 				t.SpawnChance = math.Round( math.Clamp( pnl.SpawnChance:GetValue(), 0, 100 ) )
 				t.DirWeight = math.Round( math.Clamp( pnl.WeightDirection:GetValue(), 0, 100 ) )
 				t.NoService = pnl.NoService:GetChecked()
+				t.PublickTransportOnly = pnl.PublicTransportOnly:GetChecked()
 				net.Start( "TrolleybusTrafficTrackEditor" )
 				net.WriteUInt( 1, 4 )
 				net.WriteUInt( id, 32 )
@@ -449,6 +451,7 @@ net.Receive( "TrolleybusTrafficTrackEditor", function( len )
 			pnl.SpawnChance:SetValue( track.SpawnChance or 100 )
 			pnl.WeightDirection:SetValue( track.DirWeight or 100 )
 			pnl.NoService:SetChecked( track.NoService )
+			pnl.PublicTransportOnly:SetChecked( track.PublicTransportOnly )
 		end
 	elseif cmd == 4 then
 		local isend = net.ReadBool()
