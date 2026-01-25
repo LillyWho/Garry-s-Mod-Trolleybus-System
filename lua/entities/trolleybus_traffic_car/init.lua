@@ -111,7 +111,7 @@ function ENT:SelectNextTrack()
 		local t = Trolleybus_System.GetTrafficTracks()[ v ]
 		if not t or t.NoService and self:GetVehicleData().IsService then continue end
 		-- Don't pick if you're not public transport and it's a bus lane 
-		if not t or t.PublicTransportOnly and not self:GetVehicleData().IsPublicTransport then -- TODO: Maybe add a random ignore mechanism to simulate rowdy drivers?
+		if t.PublicTransportOnly and not self:GetVehicleData().IsPublicTransport then -- TODO: Maybe add a random ignore mechanism to simulate rowdy drivers?
 			continue
 		end
 
