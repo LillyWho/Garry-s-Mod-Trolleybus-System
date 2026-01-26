@@ -62,6 +62,7 @@ else
 	include( "cl_routes.lua" )
 end
 
+-- Let other mods report their entities and baseclasses as something to avoid
 local files = file.Find( "trolleybus_system/trafficents/*.lua", "LUA" )
 for i, f in ipairs( files ) do
 	include( f )
