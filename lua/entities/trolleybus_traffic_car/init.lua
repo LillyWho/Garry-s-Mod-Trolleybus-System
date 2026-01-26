@@ -361,13 +361,15 @@ end
 function ENT:IsObstacleEnt( ent )
 	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" or ent:IsPlayer() then return true end
 	local class = ent:GetClass()
-	return class == self:GetClass() or class == "gmod_sent_vehicle_fphysics_base"
+	if Trolleybus_System.AvoidSpawnInEntClass[ class ] or Trolleybus_System.AvoidSpawnInEntClass[ ent.Base ] then return true end
+	return class == self:GetClass() or class == "gmod_sent_vehicle_fphysics_base" or class == "prop_physics"
 end
 
 function ENT:IsLookAroundEnt( ent )
 	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" then return true end
 	local class = ent:GetClass()
-	return class == self:GetClass() or class == "gmod_sent_vehicle_fphysics_base"
+	if Trolleybus_System.AvoidSpawnInEntClass[ class ] or Trolleybus_System.AvoidSpawnInEntClass[ ent.Base ] then return true end
+	return class == self:GetClass() or class == "gmod_sent_vehicle_fphysics_base" or class == "prop_physics"
 end
 
 local function math_DistToSqr( x1, y1, x2, y2 )

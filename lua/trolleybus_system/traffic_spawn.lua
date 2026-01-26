@@ -100,7 +100,7 @@ end
 local function constructEntitiesToAvoid()
 	local entities = entities or {}
 	for _, ent in ents.Iterator() do
-		if dontSpawnInSpecifiedEntitiesList( ent.BaseClass ) or dontSpawnInSpecifiedEntitiesList( ent:GetClass() ) then table.insert( entities, ent ) end
+		if dontSpawnInSpecifiedEntitiesList( ent.Base ) or dontSpawnInSpecifiedEntitiesList( ent:GetClass() ) then table.insert( entities, ent ) end
 	end
 	return entities
 end
