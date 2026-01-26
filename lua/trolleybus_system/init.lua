@@ -1,5 +1,6 @@
 -- Copyright © Platunov I. M., 2020 All rights reserved
 Trolleybus_System.TrafficLightIDs = Trolleybus_System.TrafficLightIDs or {}
+Trolleybus_System.AvoidSpawnInEntClass = Trolleybus_System.AvoidSpawnInEntClass or {}
 Trolleybus_System.ControlWithoutWires = CreateConVar( "trolleybus_control_without_wires", 0 )
 Trolleybus_System.CheckPolesCross = CreateConVar( "trolleybus_poles_cross_check", 1 )
 Trolleybus_System.MaxTrolleybuses = CreateConVar( "trolleybus_max_trolleybuses", 15 )
