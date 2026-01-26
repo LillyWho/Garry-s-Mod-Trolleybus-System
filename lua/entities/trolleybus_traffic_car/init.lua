@@ -358,18 +358,32 @@ function ENT:CheckLoopStuck()
 	return false
 end
 
+-- add a few prop entity types as a list, to make IsObstacleEnt and IsLookAround a bit cleaner
+local obstacleList = {
+	[ "prop_physics" ] = true,
+	[ "prop_physics_multiplayer" ] = true,
+	[ "gmod_sent_vehicle_fphysics_base" ] = true
+}
+
+-- External entities that are checked while spawning also shouldn't be run into
+local function extraObstacles( ent )
+	local class = ent:GetClass()
+	if Trolleybus_System.AvoidSpawnInEntClass[ class ] or Trolleybus_System.AvoidSpawnInEntClass[ ent.Base ] then return true end
+	return false
+end
+
 function ENT:IsObstacleEnt( ent )
 	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" or ent:IsPlayer() then return true end
 	local class = ent:GetClass()
-	if Trolleybus_System.AvoidSpawnInEntClass[ class ] or Trolleybus_System.AvoidSpawnInEntClass[ ent.Base ] then return true end
-	return class == self:GetClass() or class == "gmod_sent_vehicle_fphysics_base" or class == "prop_physics"
+	if extraObstacles( ent ) then return true end
+	return class == self:GetClass() or obstacleList[ class ]
 end
 
 function ENT:IsLookAroundEnt( ent )
 	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" then return true end
 	local class = ent:GetClass()
-	if Trolleybus_System.AvoidSpawnInEntClass[ class ] or Trolleybus_System.AvoidSpawnInEntClass[ ent.Base ] then return true end
-	return class == self:GetClass() or class == "gmod_sent_vehicle_fphysics_base" or class == "prop_physics"
+	if extraObstacles( ent ) then return true end
+	return class == self:GetClass() or obstacleList[ class ]
 end
 
 local function math_DistToSqr( x1, y1, x2, y2 )
