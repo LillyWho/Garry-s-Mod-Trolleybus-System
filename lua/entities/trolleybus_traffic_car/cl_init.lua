@@ -30,6 +30,12 @@ function ENT:Think()
 	end
 end
 
+function ENT:HonkWhenPlayerIsInWay()
+	local start = Sound( "trolleybus/horn_start.ogg" )
+	local loop = Sound( "trolleybus/horn.ogg" )
+	local endS = Sound( "trolleybus/horn_end.ogg" )
+end
+
 function ENT:UpdateClientEnts( transmit )
 	local data = self:GetVehicleData()
 	if not transmit or self:GetPos():DistToSqr( Trolleybus_System.EyePos() ) > Trolleybus_System.GetPlayerSetting( "TrafficDetailsDrawDistance" ) ^ 2 then
