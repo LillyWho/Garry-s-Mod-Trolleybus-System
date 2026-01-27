@@ -373,7 +373,8 @@ local function extraObstacles( ent )
 end
 
 function ENT:IsObstacleEnt( ent )
-	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" or ent:IsPlayer() then return true end
+	self:SetNW2Bool( "Honk", ent:IsPlayer() or ent:IsNPC() )
+	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" or ent:IsPlayer() or ent:IsNPC() then return true end
 	local class = ent:GetClass()
 	if extraObstacles( ent ) then return true end
 	return class == self:GetClass() or obstacleList[ class ]
