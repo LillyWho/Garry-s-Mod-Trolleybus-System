@@ -38,6 +38,7 @@ end
 
 function ENT:UpdateClientEnts( transmit )
 	local data = self:GetVehicleData()
+	local dontDespawnWheels = Trolleybus_System.GetPlayerSetting( "DontDespawnWheels" )
 	if not transmit or self:GetPos():DistToSqr( Trolleybus_System.EyePos() ) > Trolleybus_System.GetPlayerSetting( "TrafficDetailsDrawDistance" ) ^ 2 then
 		if self.EngineSound then
 			self.EngineSound:Stop()
