@@ -373,9 +373,8 @@ local function extraObstacles( ent )
 	return false
 end
 
-hook.Add( "PlayerNoClip", "Trolley_isInNoClip", function( ply, desiredNoClipState ) Trolleybus_System.NoclippingPlayers[ ply ] = desiredNoClipState end )
 function ENT:IsObstacleEnt( ent )
-	local clippablePlayer = ent:IsPlayer() and not Trolleybus_System.NoclippingPlayers[ ent ]
+	local clippablePlayer = ent:IsPlayer() and ent:GetMoveType() == 2
 	self:SetNW2Bool( "Honk", clippablePlayer or ent:IsNPC() )
 	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" or clippablePlayer or ent:IsNPC() then return true end
 	local class = ent:GetClass()
