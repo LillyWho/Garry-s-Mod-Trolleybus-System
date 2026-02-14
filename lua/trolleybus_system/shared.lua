@@ -265,6 +265,12 @@ Trolleybus_System.Settings = {
 		DefaultValue = false,
 		Type = "CheckBox",
 	},
+	DontDespawnWheels = {
+		Order = 30,
+		Network = false,
+		DefaultValue = false,
+		Type = "CheckBox",
+	},
 }
 
 Trolleybus_System.AdminSettings = {
