@@ -362,7 +362,7 @@ end
 local obstacleList = {
 	[ "prop_physics" ] = true,
 	[ "prop_physics_multiplayer" ] = true,
-	[ "prop_dynamic" ] = true,
+	--[ "prop_dynamic" ] = true,
 	[ "gmod_sent_vehicle_fphysics_base" ] = true
 }
 
@@ -374,11 +374,13 @@ local function extraObstacles( ent )
 end
 
 function ENT:IsObstacleEnt( ent )
+	local physObj = ent:GetPhysicsObject()
+	local moveable = physObj:IsMoveable() and physObj:IsMotionEnabled()
 	local clippablePlayer = ent:IsPlayer() and ent:GetMoveType() == 2
 	self:SetNW2Bool( "Honk", clippablePlayer or ent:IsNPC() )
 	if ent.IsTrolleybus or ent:IsVehicle() and ent:GetClass() ~= "prop_vehicle_prisoner_pod" or clippablePlayer or ent:IsNPC() then return true end
 	local class = ent:GetClass()
-	if extraObstacles( ent ) then return true end
+	if extraObstacles( ent ) and ( class == "prop_dynamic" and moveable ) then return true end
 	return class == self:GetClass() or obstacleList[ class ]
 end
 
