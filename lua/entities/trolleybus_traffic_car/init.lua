@@ -994,9 +994,11 @@ function ENT:Think()
 end
 
 function ENT:OnRemove()
-	for k, v in ipairs( self.Wheels ) do
-		for k, v in ipairs( v.Wheels ) do
-			SafeRemoveEntity( v )
+	if self.Wheels then
+		for k, v in ipairs( self.Wheels ) do
+			for k, v in ipairs( v.Wheels ) do
+				SafeRemoveEntity( v )
+			end
 		end
 	end
 
